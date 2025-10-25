@@ -11,7 +11,40 @@ public class TransportCompany {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private List<Dispatchers> dispatchers;
+    @OneToMany(mappedBy = "company")
+    private List<Dispatcher> dispatchers;
+    @OneToMany(mappedBy = "company")
     private List<Driver> drivers;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Dispatcher> getDispatchers() {
+        return dispatchers;
+    }
+
+    public void setDispatchers(List<Dispatcher> dispatchers) {
+        this.dispatchers = dispatchers;
+    }
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers = drivers;
+    }
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "employees")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

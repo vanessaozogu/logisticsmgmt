@@ -34,7 +34,7 @@ public class DriverService {
         driver.setCompany(driverDetails.getCompany());
         return driverRepository.save(driver);
     }
-    public void deleteDriverById(Long id) {
+    public void deleteDriver(Long id) {
         driverRepository.deleteById(id);
     }
 }

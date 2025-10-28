@@ -16,7 +16,8 @@ public class Route {
     @ManyToOne
     private Driver driver;
 
-    private String stageLocation;
+    @ManyToOne
+    private Stage stage;
 
     public Long getId() {
         return id;
@@ -58,11 +59,11 @@ public class Route {
         this.driver = driver;
     }
 
-    public String getStageLocation() {
-        return stageLocation;
+    public Stage getStage() {
+        return stage;
     }
 
-    public void setStageLocation(String stageLocation) {
-        this.stageLocation = stageLocation;
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

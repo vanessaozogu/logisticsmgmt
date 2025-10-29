@@ -20,7 +20,7 @@ public class DriverService {
     }
     public Driver getDriverById(Long id) {
         return driverRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(""));
+                .orElseThrow(() -> new RuntimeException("Driver with id " + id + " not found"));
     }
 
     public Driver createDriver(Driver driver) {

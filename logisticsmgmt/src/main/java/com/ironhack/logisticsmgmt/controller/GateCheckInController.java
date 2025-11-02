@@ -1,6 +1,7 @@
 package com.ironhack.logisticsmgmt.controller;
 
 
+import com.ironhack.logisticsmgmt.enums.Gate;
 import com.ironhack.logisticsmgmt.model.GateCheckIn;
 import com.ironhack.logisticsmgmt.service.GateCheckInService;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class GateCheckInController {
     public ResponseEntity<GateCheckIn> createCheckIn(
             @RequestParam Long routeId,
             @RequestParam Long controllerId,
-            @RequestParam String gate) {
+            @RequestParam Gate gate) {
         GateCheckIn checkIn = gateCheckInService.checkInDriver(routeId, controllerId, gate);
         return ResponseEntity.ok(checkIn);
     }

@@ -1,5 +1,6 @@
 package com.ironhack.logisticsmgmt.model;
 
+import com.ironhack.logisticsmgmt.enums.Gate;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -10,7 +11,8 @@ public class GateCheckIn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String gate;
+    @Enumerated(EnumType.STRING)
+    private Gate gate;
     private LocalDateTime arrivalTime;
     private boolean onTime;
 
@@ -28,11 +30,11 @@ public class GateCheckIn {
         this.id = id;
     }
 
-    public String getGate() {
+    public Gate getGate() {
         return gate;
     }
 
-    public void setGate(String gate) {
+    public void setGate(Gate gate) {
         this.gate = gate;
     }
 

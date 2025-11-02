@@ -1,7 +1,9 @@
 package com.ironhack.logisticsmgmt.service;
 
 import com.ironhack.logisticsmgmt.model.Driver;
+import com.ironhack.logisticsmgmt.model.TransportCompany;
 import com.ironhack.logisticsmgmt.repository.DriverRepository;
+import com.ironhack.logisticsmgmt.repository.TransportCompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,23 @@ import java.util.List;
 @Service
 public class DriverService {
     private final DriverRepository driverRepository;
+    private final TransportCompanyRepository transportCompanyRepository;
 
-    public DriverService(DriverRepository driverRepository) {
+    public DriverService(DriverRepository driverRepository, TransportCompanyRepository transportCompanyRepository) {
         this.driverRepository = driverRepository;
+        this.transportCompanyRepository = transportCompanyRepository;
+    }
+
+    public Driver createDriver(Driver driver) {
+        // Get the actual company from the DB
+        TransportCompany company = transportCompanyRepository.findById(driver.getCompany().getId())
+                .orElseThrow(() -> new RuntimeException("Company not found with id " + driver.getCompany().getId()));
+
+        // Set it on the driver
+        driver.setCompany(company);
+
+        // Save driver
+        return driverRepository.save(driver);
     }
 
     public List<Driver> getAllDrivers() {
@@ -21,10 +37,6 @@ public class DriverService {
     public Driver getDriverById(Long id) {
         return driverRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Driver with id " + id + " not found"));
-    }
-
-    public Driver createDriver(Driver driver) {
-        return driverRepository.save(driver);
     }
 
     public Driver updateDriver(Long id, Driver driverDetails) {

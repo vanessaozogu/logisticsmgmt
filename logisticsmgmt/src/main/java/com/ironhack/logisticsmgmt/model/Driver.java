@@ -18,6 +18,13 @@ public class Driver {
     @OneToMany(mappedBy = "driver")
     private List<Route> routes = new ArrayList<>();
 
+    public Driver(String driverId, String name, TransportCompany company) {
+    }
+
+    public Driver() {
+
+    }
+
     public Long getId() {
         return id;
     }

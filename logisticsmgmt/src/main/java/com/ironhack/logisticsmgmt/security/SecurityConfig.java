@@ -15,8 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 /**
@@ -75,6 +74,28 @@ public class SecurityConfig {
                         .requestMatchers(POST, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                         .requestMatchers(POST, "/api/roles").hasAnyAuthority("ROLE_ADMIN")
                         .requestMatchers(POST, "/api/roles/add-to-user").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(GET, "/api/checkins").hasAnyAuthority("ROLE_CONTROLLER")
+                        .requestMatchers(POST, "/api/checkins").hasAnyAuthority("ROLE_CONTROLLER")
+                        .requestMatchers(DELETE, "/api/checkins").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(GET, "/api/routes").hasAnyAuthority("ROLE_USER")
+                        .requestMatchers(POST, "/api/routes").hasAnyAuthority("ROLE_CONTROLLER")
+                        .requestMatchers(DELETE, "/api/routes").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(GET, "/api/dispatchers").hasAnyAuthority("ROLE_USER")
+                        .requestMatchers(POST, "/api/dispatchers").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(PUT, "/api/dispatchers").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(DELETE, "/api/dispatchers").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(GET, "/api/employees").hasAnyAuthority("ROLE_USER")
+                        .requestMatchers(POST, "/api/employees").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(PUT, "/api/employees").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(DELETE, "/api/employees").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(GET, "/api/drivers").hasAnyAuthority("ROLE_USER")
+                        .requestMatchers(POST, "/api/drivers").hasAnyAuthority("ROLE_CONTROLLER")
+                        .requestMatchers(PUT, "/api/drivers").hasAnyAuthority("ROLE_CONTROLLER")
+                        .requestMatchers(DELETE, "/api/drivers").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(GET, "/api/companies").hasAnyAuthority("ROLE_USER")
+                        .requestMatchers(POST, "/api/drivers").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(PUT, "/api/drivers").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(DELETE, "/api/drivers").hasAnyAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()); // any other endpoints require authentication
 
         // add the custom authentication filter to the http security object

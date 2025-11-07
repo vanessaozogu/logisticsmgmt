@@ -1,5 +1,7 @@
 package com.ironhack.logisticsmgmt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -13,17 +15,20 @@ public class Driver {
     private String driverId;
     private String name;
     @ManyToOne
+    @JsonIgnoreProperties({"drivers", "dispatchers"})
     private TransportCompany company;
 
     @OneToMany(mappedBy = "driver")
+    @JsonIgnore
     private List<Route> routes = new ArrayList<>();
 
     public Driver(String driverId, String name, TransportCompany company) {
+        this.driverId = driverId;
+        this.name = name;
+        this.company = company;
     }
 
-    public Driver() {
-
-    }
+    public Driver() {}
 
     public Long getId() {
         return id;

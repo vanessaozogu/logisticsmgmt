@@ -1,5 +1,6 @@
 package com.ironhack.logisticsmgmt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,9 +12,13 @@ public class TransportCompany {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
     @OneToMany(mappedBy = "company")
+    @JsonIgnoreProperties("company")
     private List<Dispatcher> dispatchers;
+
     @OneToMany(mappedBy = "company")
+    @JsonIgnoreProperties("company")
     private List<Driver> drivers;
 
     public Long getId() {

@@ -47,6 +47,7 @@ public class LogisticsDataLoader implements CommandLineRunner {
         Driver driver1 = new Driver("DA-001", "Michael Drive", swift);
         Driver driver2 = new Driver("DA-002", "David Ride", adeoye);
         Driver driver3 = new Driver("DA-003", "Francis Speed", adeoye);
+        System.out.println("Saving driver: " + driver1.getName() + " - " + driver1.getDriverId());
         driverRepository.saveAll(List.of(driver1, driver2, driver3));
 
         // ---- 4️⃣ Create Dispatchers ----
@@ -106,6 +107,10 @@ public class LogisticsDataLoader implements CommandLineRunner {
         checkIn2.setRoute(route2);
 
         gateCheckInRepository.saveAll(List.of(checkIn1, checkIn2));
+
+        System.out.println("Saving driver: " + driver1.getName() + " - " + driver1.getDriverId());
+        driverRepository.saveAll(List.of(driver1, driver2, driver3));
+
 
         System.out.println("✅ Logistics sample data loaded successfully!");
     }

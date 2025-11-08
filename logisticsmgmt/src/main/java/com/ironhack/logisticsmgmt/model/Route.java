@@ -19,6 +19,16 @@ public class Route {
     @ManyToOne
     private Stage stage;
 
+    public Route() {}
+
+    public Route(String routeCode, String wave, LocalDateTime expectedArrival, Driver driver, Stage stage) {
+        this.routeCode = routeCode;
+        this.wave = wave;
+        this.expectedArrival = expectedArrival;
+        this.driver = driver;
+        this.stage = stage;
+    }
+
     public Long getId() {
         return id;
     }

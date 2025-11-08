@@ -93,9 +93,9 @@ public class SecurityConfig {
                         .requestMatchers(PUT, "/api/drivers").hasAnyAuthority("ROLE_CONTROLLER")
                         .requestMatchers(DELETE, "/api/drivers").hasAnyAuthority("ROLE_SUPERVISOR")
                         .requestMatchers(GET, "/api/companies").hasAnyAuthority("ROLE_USER")
-                        .requestMatchers(POST, "/api/drivers").hasAnyAuthority("ROLE_SUPERVISOR")
-                        .requestMatchers(PUT, "/api/drivers").hasAnyAuthority("ROLE_SUPERVISOR")
-                        .requestMatchers(DELETE, "/api/drivers").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(POST, "/api/companies").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(PUT, "/api/companies").hasAnyAuthority("ROLE_SUPERVISOR")
+                        .requestMatchers(DELETE, "/api/companies").hasAnyAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()); // any other endpoints require authentication
 
         // add the custom authentication filter to the http security object

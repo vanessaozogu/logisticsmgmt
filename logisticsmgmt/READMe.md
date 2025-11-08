@@ -32,7 +32,7 @@ This application manages transport companies, routes, drivers, dispatchers, gate
 
 ---
 ## Class Diagram
-![img.png](img.png)
+
 
 ## 🔐 Authentication / Authorization
 

@@ -45,6 +45,10 @@ public class LogisticsDataLoader implements CommandLineRunner {
 
         // ---- 3️⃣ Create Drivers ----
         Driver driver1 = new Driver("DA-001", "Michael Drive", swift);
+        Driver driver4 = new Driver("DA-004", "Michael Scoffield", swift);
+        Driver driver5 = new Driver("DA-005", "Ron Weasley Drive", swift);
+        Driver driver6 = new Driver("DA-006", "Hermione Granger", adeoye);
+        Driver driver7 = new Driver("DA-007", "Draco Malfoy", adeoye);
         Driver driver2 = new Driver("DA-002", "David Ride", adeoye);
         Driver driver3 = new Driver("DA-003", "Francis Speed", adeoye);
         System.out.println("Saving driver: " + driver1.getName() + " - " + driver1.getDriverId());
@@ -53,10 +57,14 @@ public class LogisticsDataLoader implements CommandLineRunner {
         // ---- 4️⃣ Create Dispatchers ----
         Dispatcher dispatcher1 = new Dispatcher();
         dispatcher1.setName("Stanley Hudson");
+        dispatcher1.setEmail("s.hudson@swift.de");
+        dispatcher1.setRole(Role.DISPATCHER);
         dispatcher1.setCompany(swift);
 
         Dispatcher dispatcher2 = new Dispatcher();
         dispatcher2.setName("Jim Halpert");
+        dispatcher2.setEmail("jhalpert@adeoye.de");
+        dispatcher2.setRole(Role.DISPATCHER);
         dispatcher2.setCompany(adeoye);
 
         dispatcherRepository.saveAll(List.of(dispatcher1, dispatcher2));
@@ -87,7 +95,21 @@ public class LogisticsDataLoader implements CommandLineRunner {
         route2.setWave("10:40");
         route2.setExpectedArrival(LocalDateTime.now().plusHours(12));
         route2.setDriver(driver2);
-        route2.setStage(D01);
+        route2.setStage(B43);
+
+        Route route3 = new Route();
+        route3.setRouteCode("CA_A103");
+        route3.setWave("10:40");
+        route3.setExpectedArrival(LocalDateTime.now().plusHours(12));
+        route3.setDriver(driver3);
+        route3.setStage(C22);
+
+        Route route4 = new Route();
+        route4.setRouteCode("CA_A104");
+        route4.setWave("11:00");
+        route4.setExpectedArrival(LocalDateTime.now().plusHours(12));
+        route4.setDriver(driver4);
+        route4.setStage(D01);
 
         routeRepository.saveAll(List.of(route1, route2));
 
@@ -101,10 +123,24 @@ public class LogisticsDataLoader implements CommandLineRunner {
 
         GateCheckIn checkIn2 = new GateCheckIn();
         checkIn2.setGate(Gate.SOUTH);
-        checkIn2.setArrivalTime(LocalDateTime.now().plusHours(2));
+        checkIn2.setArrivalTime(LocalDateTime.now().plusHours(1));
         checkIn2.setOnTime(false);
         checkIn2.setController(controller);
         checkIn2.setRoute(route2);
+
+        GateCheckIn checkIn3 = new GateCheckIn();
+        checkIn3.setGate(Gate.SOUTH);
+        checkIn3.setArrivalTime(LocalDateTime.now().plusHours(2));
+        checkIn3.setOnTime(true);
+        checkIn3.setController(controller);
+        checkIn3.setRoute(route3);
+
+        GateCheckIn checkIn4 = new GateCheckIn();
+        checkIn4.setGate(Gate.NORTH);
+        checkIn4.setArrivalTime(LocalDateTime.now().plusHours(3));
+        checkIn4.setOnTime(true);
+        checkIn4.setController(controller);
+        checkIn4.setRoute(route4);
 
         gateCheckInRepository.saveAll(List.of(checkIn1, checkIn2));
 
